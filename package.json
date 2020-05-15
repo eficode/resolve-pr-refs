@@ -1,0 +1,31 @@
+{
+  "name": "resolve-pr-refs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "@octokit/core": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1",
+    "standard-version": "^9.3.2"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/ncc build index.js --license licenses.txt",
+    "release": "./node_modules/.bin/standard-version && git push --follow-tags",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eficode/ff-merge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eficode/resolve-pr-refs/issues"
+  },
+  "homepage": "https://github.com/eficode/resolve-pr-refs#readme"
+}

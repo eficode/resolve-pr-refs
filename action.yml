@@ -1,0 +1,15 @@
+name: 'Resolve pull request refs'
+author: 'Eficode'
+description: 'outputs base_ref and head_ref for a PR comment (issue_comment event)'
+inputs:
+  token:
+    description: Github api token. Usually GITHUB_TOKEN.
+    required: true
+outputs:
+  base_ref:
+    description: Pull request base ref
+  head_ref:
+    description: Pull request head ref
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
