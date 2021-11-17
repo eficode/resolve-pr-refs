@@ -10,12 +10,14 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
+    "eslint": "^8.2.0",
     "standard-version": "^9.3.2"
   },
   "scripts": {
     "build": "./node_modules/.bin/ncc build index.js --license licenses.txt",
     "release": "./node_modules/.bin/standard-version && git push --follow-tags",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "lint": "eslint index.js src test"
   },
   "repository": {
     "type": "git",
