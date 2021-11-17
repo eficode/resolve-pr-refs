@@ -6,7 +6,7 @@ on:
 
 jobs:
   print_refs:
-    name: test PR
+    name: Test PR
     if: ${{ github.event.comment.body == '/test' }}
     runs-on: ubuntu-latest
     # Checkout PR and test that the action still works with it
