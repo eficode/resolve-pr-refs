@@ -1,0 +1,49 @@
+name: pr-test
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  print_refs:
+    name: test PR
+    if: ${{ github.event.comment.body == '/test' }}
+    runs-on: ubuntu-latest
+    # Checkout PR and test that the action still works with it
+    steps:
+      - name: resolve pr refs with v0.0.1
+        id: refs
+        uses: eficode/resolve-pr-refs@v0.0.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: checkout PR code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.refs.outputs.head_ref }}
+      - name: resolve pr refs with PR version
+        id: refs_in_test
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: update status
+        run: |
+          echo "base_ref: ${{ steps.refs_in_test.outputs.base_ref }}"
+          echo "head_ref: ${{ steps.refs_in_test.outputs.head_ref }}"
+          STATE=success
+          if [[ "${{ steps.refs_in_test.outputs.base_ref }}" == "" ]]; then
+            STATE=failure
+          elif [[ "${{ steps.refs_in_test.outputs.head_ref }}" == "" ]]; then
+            STATE=failure
+          fi
+          SHA=$(git rev-parse HEAD)
+          curl --request POST \
+          --url "https://api.github.com/repos/${{ github.repository }}/statuses/$SHA" \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'accept: application/vnd.github.v3+json' \
+          --header 'content-type: application/json' \
+          --data "{
+            \"state\": \"$STATE\",
+            \"context\": \"pr-test\",
+            \"target_url\": \"${{ github.event.issue.pull_request.url }}\"
+            }" \
+          --fail
