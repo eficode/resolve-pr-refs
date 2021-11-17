@@ -1,7 +1,7 @@
 class PayloadProvider {
   constructor() {
     this.contextPayload = {
-      payload: { issue: { pull_request: { url: '' } } }
+      payload: { issue: { pull_request: { url: '' } } },
     };
     this.octokitPayload = {
       status: 'example status',

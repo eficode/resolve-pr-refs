@@ -11,7 +11,7 @@ describe('resolveRefs', () => {
         data: {
           head: { ref: process.env.HEAD_REF },
           base: { ref: process.env.BASE_REF },
-        }
+        },
       });
     }
   });
