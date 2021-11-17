@@ -6,8 +6,8 @@ class PayloadProvider {
     this.octokitPayload = {
       status: 'example status',
       data: {
-        base: { ref: 'test base ref' },
-        head: { ref: 'test head ref' },
+        head: { ref: 'test/head/ref' },
+        base: { ref: 'test/base/ref' },
       },
     };
   }
