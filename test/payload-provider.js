@@ -19,6 +19,9 @@ class PayloadProvider {
   setOctokitPayload(payload) {
     this.octokitPayload = { ...this.octokitPayload, ...payload };
   }
+
+  getHeadRef = () => this.octokitPayload.data.head.ref;
+  getBaseRef = () => this.octokitPayload.data.base.ref;
 }
 
 module.exports = new PayloadProvider();
