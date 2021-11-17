@@ -8,7 +8,7 @@ const github = require('@actions/github');
     const githubToken = core.getInput('token');
     const octokit = github.getOctokit(githubToken);
 
-    const prDetails = await octokit.request(`GET ${foo}`);
+    const prDetails = await octokit.request(`GET ${prUrl}`);
 
     const status = prDetails.status
     const headRef = prDetails.data.head.ref
