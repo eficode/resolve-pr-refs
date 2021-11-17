@@ -13,4 +13,4 @@ const resolver = require('./src/resolver');
   } catch (error) {
     core.setFailed(error.message);
   }
-});
+})();
