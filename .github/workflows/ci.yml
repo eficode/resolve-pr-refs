@@ -1,0 +1,17 @@
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+    - run: npm ci
+    - run: npm test
+    - run: npm run lint
