@@ -1,0 +1,25 @@
+name: Verify PR Status
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: resolve pr refs
+        id: pr_refs
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}pr_refs
+      - name: fail if status not set
+        run: |
+          echo "base_ref: ${{ steps.refs_in_test.outputs.base_ref }}"
+          echo "head_ref: ${{ steps.refs_in_test.outputs.head_ref }}"
+          if [[ "${{ steps.refs_in_test.outputs.base_ref }}" == "" ]]; then
+            exit 1
+          elif [[ "${{ steps.refs_in_test.outputs.head_ref }}" == "" ]]; then
+            exit 1
+          fi
