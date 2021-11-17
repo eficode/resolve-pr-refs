@@ -20,6 +20,11 @@
     "test": "jest",
     "lint": "eslint index.js src test"
   },
+  "jest": {
+    "setupFiles": [
+      "./test/setup.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eficode/ff-merge.git"
