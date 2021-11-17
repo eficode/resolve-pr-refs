@@ -1,0 +1,26 @@
+name: test PR
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  print_refs:
+    name: test PR
+    if: ${{ github.event.comment.body == '/test' }}
+    runs-on: ubuntu-latest
+    steps:
+      # - name: resolve pr refs
+      #   id: refs
+      #   uses: eficode/resolve-pr-refs@v0.0.1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      - name: checkout
+        uses: actions/checkout@v2
+        # with:
+        #   ref: ${{ steps.refs.outputs.base_ref }}
+
+      # - name: print refs
+      #   run: |
+      #     echo ${{ steps.refs.outputs.base_ref }}
+      #     echo ${{ steps.refs.outputs.head_ref }}
