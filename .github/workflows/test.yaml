@@ -25,6 +25,7 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
       - name: update status
         run: |
           echo "base_ref: ${{ steps.refs_in_test.outputs.base_ref }}"
@@ -33,6 +34,8 @@ jobs:
           if [[ "${{ steps.refs_in_test.outputs.base_ref }}" == "" ]]; then
             STATE=failure
           elif [[ "${{ steps.refs_in_test.outputs.head_ref }}" == "" ]]; then
+            STATE=failure
+          elif [[ "${{ steps.refs_in_test.outcome }}" != "success" ]]; then
             STATE=failure
           fi
           SHA=$(git rev-parse HEAD)
@@ -47,3 +50,7 @@ jobs:
             \"target_url\": \"${{ github.event.issue.pull_request.url }}\"
             }" \
           --fail
+          if [[ "$STATE" == "failure" ]]; then
+            echo "state=failure"
+            exit 1
+          exit
