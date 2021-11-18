@@ -1,4 +1,4 @@
-name: Test PR on Comment
+name: pr-test
 
 on:
   issue_comment:
