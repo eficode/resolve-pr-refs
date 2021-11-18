@@ -53,4 +53,4 @@ jobs:
           if [[ "$STATE" == "failure" ]]; then
             echo "state=failure"
             exit 1
-          exit
+          fi
