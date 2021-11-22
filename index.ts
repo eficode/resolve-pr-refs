@@ -1,7 +1,5 @@
 const core = require('@actions/core');
 
-const resolver = require('./src/resolver');
-
 (async () => {
   try {
     const githubToken = core.getInput('token');
@@ -10,7 +8,7 @@ const resolver = require('./src/resolver');
 
     core.setOutput('base_ref', baseRef);
     core.setOutput('head_ref', headRef);
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message);
   }
 })();

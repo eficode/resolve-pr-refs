@@ -2,7 +2,7 @@ const github = require('@actions/github');
 
 const ISSUE_TYPES = ['issue_comment'];
 
-const getPrUrl = (payload) => {
+const getPrUrl = (payload: any) => {
   try {
     if (ISSUE_TYPES.includes(payload.event_name)) {
       return github.context.payload.issue.pull_request.url;
@@ -22,7 +22,7 @@ const getFallbackRefs = () => {
   };
 };
 
-const resolveRefs = async (token) => {
+const resolveRefs = async (token: string) => {
   const prUrl = getPrUrl(github.context.payload);
 
   if (!prUrl) {

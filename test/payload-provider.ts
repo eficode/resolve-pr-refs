@@ -1,4 +1,7 @@
 class PayloadProvider {
+  contextPayload: any;
+  octokitPayload: { status: string; data: { head: { ref: string; }; base: { ref: string; }; }; };
+
   constructor() {
     this.contextPayload = {
       payload: {
@@ -9,17 +12,17 @@ class PayloadProvider {
     this.octokitPayload = {
       status: '200',
       data: {
-        head: { ref: process.env.GITHUB_HEAD_REF || 'refs/heads/pr' },
-        base: { ref: process.env.GITHUB_BASE_REF || 'refs/heads/main' },
+        head: { ref: 'refs/heads/pr' },
+        base: { ref: 'refs/heads/main' },
       },
     };
   }
 
-  setContextPayload(payload) {
+  setContextPayload(payload: any) {
     this.contextPayload = { ...this.contextPayload, ...payload };
   }
 
-  setOctokitPayload(payload) {
+  setOctokitPayload(payload: any) {
     this.octokitPayload = { ...this.octokitPayload, ...payload };
   }
 
