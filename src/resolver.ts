@@ -1,7 +1,6 @@
-const github = require('@actions/github');
+import github from '@actions/github';
 
 const ISSUE_TYPES = ['issue_comment'];
-const PULL_REQUEST_TYPES = ['pull_request'];
 
 const getPrUrl = (context: any) => {
   if (ISSUE_TYPES.includes(context.eventName)) {
@@ -11,7 +10,7 @@ const getPrUrl = (context: any) => {
   throw new Error(`Unsupported event type: ${context.eventName}`);
 };
 
-const resolveRefs = async (token: string) => {
+export const resolveRefs = async (token: string) => {
   const prUrl = getPrUrl(github.context);
   const octokit = github.getOctokit(token);
 
@@ -23,5 +22,3 @@ const resolveRefs = async (token: string) => {
 
   return { status, headRef, baseRef };
 };
-
-module.exports = { resolveRefs };
