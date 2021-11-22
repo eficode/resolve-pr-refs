@@ -4,13 +4,14 @@ const ISSUE_TYPES = ['issue_comment'];
 
 const getPrUrl = (payload) => {
   if (ISSUE_TYPES.includes(payload.event_name)) {
-    return github.context.payload.issue.pull_request.url;
+    return payload.issue.pull_request.url;
   }
 
   throw new Error(`Unsupported event type: ${payload.event_name}`);
 };
 
 const resolveRefs = async (token) => {
+  console.log(github.context.payload);
   const prUrl = getPrUrl(github.context.payload);
   const octokit = github.getOctokit(token);
 
