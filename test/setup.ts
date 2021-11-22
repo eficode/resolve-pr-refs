@@ -1,14 +1,10 @@
-const github = require('@actions/github');
+import mockPayload from './payload-provider';
 
-const mockPayload = require('./payload-provider');
-
-if (!github.context.payload.issue) {
-  jest.mock('@actions/github', () => ({
-    get context () {
-      return mockPayload.contextPayload;
-    },
-    getOctokit () {
-      return { request: () => mockPayload.octokitPayload };
-    },
-  }));
-}
+jest.mock('@actions/github', () => ({
+  get context () {
+    return mockPayload.contextPayload;
+  },
+  getOctokit () {
+    return { request: () => mockPayload.octokitPayload };
+  },
+}));

@@ -30,4 +30,4 @@ class PayloadProvider {
   getBaseRef() { return this.octokitPayload.data.base.ref; }
 }
 
-module.exports = new PayloadProvider();
+export default new PayloadProvider();
