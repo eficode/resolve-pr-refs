@@ -1,5 +1,7 @@
 const core = require('@actions/core');
 
+const resolver = require('./src/resolver');
+
 (async () => {
   try {
     const githubToken = core.getInput('token');
