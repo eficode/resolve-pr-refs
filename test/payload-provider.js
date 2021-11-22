@@ -1,13 +1,16 @@
 class PayloadProvider {
   constructor() {
     this.contextPayload = {
-      payload: { issue: { pull_request: { url: '' } } },
+      payload: {
+        event_name: 'issue_comment',
+        issue: { pull_request: { url: 'https://api.github.com/repos/not-existing/pr/pulls/1' } },
+      },
     };
     this.octokitPayload = {
-      status: 'example status',
+      status: '200',
       data: {
-        head: { ref: process.env.GITHUB_HEAD_REF || 'test/head/ref' },
-        base: { ref: process.env.GITHUB_BASE_REF || 'test/base/ref' },
+        head: { ref: process.env.GITHUB_HEAD_REF || 'refs/heads/pr' },
+        base: { ref: process.env.GITHUB_BASE_REF || 'refs/heads/main' },
       },
     };
   }
