@@ -2,16 +2,16 @@ const github = require('@actions/github');
 
 const ISSUE_TYPES = ['issue_comment'];
 
-const getPrUrl = (payload) => {
-  if (ISSUE_TYPES.includes(payload.event_name)) {
-    return github.context.payload.issue.pull_request.url;
+const getPrUrl = (context) => {
+  if (ISSUE_TYPES.includes(context.eventName)) {
+    return context.payload.issue.pull_request.url;
   }
 
-  throw new Error(`Unsupported event type: ${payload.event_name}`);
+  throw new Error(`Unsupported event type: ${context.eventName}`);
 };
 
 const resolveRefs = async (token) => {
-  const prUrl = getPrUrl(github.context.payload);
+  const prUrl = getPrUrl(github.context);
   const octokit = github.getOctokit(token);
 
   const prDetails = await octokit.request(`GET ${prUrl}`);
