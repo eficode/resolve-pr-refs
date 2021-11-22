@@ -8278,8 +8278,18 @@ function wrappy (fn, cb) {
 
 const github = __nccwpck_require__(5438);
 
+const ISSUE_TYPES = ['issue_comment'];
+
+const getPrUrl = (payload) => {
+  if (ISSUE_TYPES.includes(payload.event_name)) {
+    return github.context.payload.issue.pull_request.url;
+  }
+
+  throw new Error(`Unsupported event type: ${payload.event_name}`);
+};
+
 const resolveRefs = async (token) => {
-  const prUrl = github.context.payload.issue.pull_request.url;
+  const prUrl = getPrUrl(github.context.payload);
   const octokit = github.getOctokit(token);
 
   const prDetails = await octokit.request(`GET ${prUrl}`);
