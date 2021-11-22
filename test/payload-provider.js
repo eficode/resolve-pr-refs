@@ -9,8 +9,8 @@ class PayloadProvider {
     this.octokitPayload = {
       status: '200',
       data: {
-        head: { ref: process.env.GITHUB_HEAD_REF || 'refs/heads/pr' },
-        base: { ref: process.env.GITHUB_BASE_REF || 'refs/heads/main' },
+        head: { ref: 'refs/heads/pr' },
+        base: { ref: 'refs/heads/main' },
       },
     };
   }
