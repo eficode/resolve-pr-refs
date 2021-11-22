@@ -4,8 +4,8 @@ class PayloadProvider {
 
   constructor() {
     this.contextPayload = {
+      eventName: 'issue_comment',
       payload: {
-        event_name: 'issue_comment',
         issue: { pull_request: { url: 'https://api.github.com/repos/not-existing/pr/pulls/1' } },
       },
     };

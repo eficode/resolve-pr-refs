@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const core = require('@actions/core');
-const resolver = require('./resolver');
+const resolver = require('./src/resolver');
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const githubToken = core.getInput('token');
