@@ -7,7 +7,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "./lib"
   },
   "ts-node": {
     "files": true

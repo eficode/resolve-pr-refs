@@ -24,7 +24,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
-    "build": "tsc",
+    "build": "tsc && ./node_modules/.bin/ncc build lib/index.js --license licenses.txt",
     "release": "./node_modules/.bin/standard-version && git push --follow-tags",
     "test": "jest",
     "format": "prettier --write \"src/**/*.ts\"",
