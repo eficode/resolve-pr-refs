@@ -1,6 +1,8 @@
+const github = require('@actions/github');
+
 const mockPayload = require('./payload-provider');
 
-if (!process.env.GITHUB_HEAD_REF || !process.env.GITHUB_BASE_REF) {
+if (!github.context.payload.issue) {
   jest.mock('@actions/github', () => ({
     get context () {
       return mockPayload.contextPayload;
