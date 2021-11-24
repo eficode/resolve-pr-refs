@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/eficode/resolve-pr-refs/compare/v0.0.2...v0.0.3) (2021-11-24)
+
+
+### Features
+
+* **app:** build app with tsc and then ncc ([1643853](https://github.com/eficode/resolve-pr-refs/commit/1643853f9a824ed847bea92fd71a24c4a72be39c))
+* **app:** migrate to typescript ([0e601f3](https://github.com/eficode/resolve-pr-refs/commit/0e601f34466100eb66b77e454d08c33d706bbf5e))
+
+
+### Bug Fixes
+
+* **app:** update github imports ([ed2fa9e](https://github.com/eficode/resolve-pr-refs/commit/ed2fa9e413916c68d40a3bc25de7d4239a87c351))
+
 ### [0.0.2](https://github.com/eficode/ff-merge/compare/v0.0.1...v0.0.2) (2021-11-22)
 
 
