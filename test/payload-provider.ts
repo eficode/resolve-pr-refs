@@ -1,4 +1,7 @@
 class PayloadProvider {
+  contextPayload: any;
+  octokitPayload: { status: string; data: { head: { ref: string; }; base: { ref: string; }; }; };
+
   constructor() {
     this.contextPayload = {
       eventName: 'issue_comment',
@@ -15,11 +18,11 @@ class PayloadProvider {
     };
   }
 
-  setContextPayload(payload) {
+  setContextPayload(payload: any) {
     this.contextPayload = { ...this.contextPayload, ...payload };
   }
 
-  setOctokitPayload(payload) {
+  setOctokitPayload(payload: any) {
     this.octokitPayload = { ...this.octokitPayload, ...payload };
   }
 
@@ -27,4 +30,4 @@ class PayloadProvider {
   getBaseRef() { return this.octokitPayload.data.base.ref; }
 }
 
-module.exports = new PayloadProvider();
+export default new PayloadProvider();

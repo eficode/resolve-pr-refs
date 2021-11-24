@@ -1,6 +1,114 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 4822:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core = __importStar(__nccwpck_require__(2186));
+const resolver_1 = __nccwpck_require__(7409);
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const githubToken = core.getInput('token');
+        const { headRef, baseRef } = yield (0, resolver_1.resolveRefs)(githubToken);
+        core.setOutput('base_ref', baseRef);
+        core.setOutput('head_ref', headRef);
+    }
+    catch (error) {
+        core.setFailed(error.message);
+    }
+}))();
+
+
+/***/ }),
+
+/***/ 7409:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.resolveRefs = void 0;
+const github = __importStar(__nccwpck_require__(5438));
+const ISSUE_TYPES = ['issue_comment'];
+const getPrUrl = (context) => {
+    if (ISSUE_TYPES.includes(context.eventName)) {
+        return context.payload.issue.pull_request.url;
+    }
+    throw new Error(`Unsupported event type: ${context.eventName}`);
+};
+const resolveRefs = (token) => __awaiter(void 0, void 0, void 0, function* () {
+    const prUrl = getPrUrl(github.context);
+    const octokit = github.getOctokit(token);
+    const prDetails = yield octokit.request(`GET ${prUrl}`);
+    const status = prDetails.status;
+    const headRef = prDetails.data.head.ref;
+    const baseRef = prDetails.data.base.ref;
+    return { status, headRef, baseRef };
+});
+exports.resolveRefs = resolveRefs;
+
+
+/***/ }),
+
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -8273,39 +8381,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 9144:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const github = __nccwpck_require__(5438);
-
-const ISSUE_TYPES = ['issue_comment'];
-
-const getPrUrl = (context) => {
-  if (ISSUE_TYPES.includes(context.eventName)) {
-    return context.payload.issue.pull_request.url;
-  }
-
-  throw new Error(`Unsupported event type: ${context.eventName}`);
-};
-
-const resolveRefs = async (token) => {
-  const prUrl = getPrUrl(github.context);
-  const octokit = github.getOctokit(token);
-
-  const prDetails = await octokit.request(`GET ${prUrl}`);
-
-  const status = prDetails.status;
-  const headRef = prDetails.data.head.ref;
-  const baseRef = prDetails.data.base.ref;
-
-  return { status, headRef, baseRef };
-};
-
-module.exports = { resolveRefs };
-
-
-/***/ }),
-
 /***/ 2877:
 /***/ ((module) => {
 
@@ -8472,28 +8547,12 @@ module.exports = require("zlib");
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-const core = __nccwpck_require__(2186);
-
-const resolver = __nccwpck_require__(9144);
-
-(async () => {
-  try {
-    const githubToken = core.getInput('token');
-
-    const { headRef, baseRef } = await resolver.resolveRefs(githubToken);
-
-    core.setOutput('base_ref', baseRef);
-    core.setOutput('head_ref', headRef);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
-})();
-
-})();
-
-module.exports = __webpack_exports__;
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __nccwpck_require__(4822);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
 /******/ })()
 ;

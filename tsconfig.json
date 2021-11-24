@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["esnext"],
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "outDir": "./lib"
+  },
+  "ts-node": {
+    "files": true
+  },
+  "include": ["index.ts", "src", "test"],
+  "exclude": ["node_modules", "test"]
+}
