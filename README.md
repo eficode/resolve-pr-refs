@@ -49,6 +49,7 @@ jobs:
         run: |
           git fetch
           git merge --ff-only origin/${{ steps.refs.outputs.head_ref }}
+          git push origin --delete ${{ steps.refs.outputs.head_ref }}
           git push
 ```
 
