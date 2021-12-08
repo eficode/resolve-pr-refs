@@ -61,7 +61,7 @@ npm i -g @vercel/ncc
 
 ### Compile
 ```
-ncc build index.js --license licenses.txt
+ncc build index.ts --license licenses.txt
 ```
 
 ### Tag
