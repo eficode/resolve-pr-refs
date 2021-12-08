@@ -1,7 +1,10 @@
 # Github Action Resolve Pull Request Refs
-Tested only for `issue_comment` event. When your workflow triggers on a comment on PR, you can use this action.
+Tested for the following events:
+- `issue_comment` - triggered on a comment on a PR
+- `pull_request` - triggered on a pull request review
+- `pull_request_review` - triggered on a pull request review
 
-TODO: test also on `pull_request` events.
+Using this action in a workflow that triggers on another event won't work.
 
 ## Inputs
 
@@ -61,7 +64,7 @@ npm i -g @vercel/ncc
 
 ### Compile
 ```
-ncc build index.js --license licenses.txt
+ncc build index.ts --license licenses.txt
 ```
 
 ### Tag
