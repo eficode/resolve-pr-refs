@@ -11,6 +11,12 @@ const getPrUrl = (context: any) => {
 };
 
 export const resolveRefs = async (token: string) => {
+  if (github.context.eventName == 'pull_request_review') {
+    let headRef = github.context.payload.pull_request?.head.ref;
+    let baseRef = github.context.payload.pull_request?.base.ref;
+    return { headRef, baseRef };
+  }
+
   const prUrl = getPrUrl(github.context);
   const octokit = github.getOctokit(token);
 
