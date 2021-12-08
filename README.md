@@ -1,11 +1,10 @@
 # Github Action Resolve Pull Request Refs
 Tested for the following events:
 - `issue_comment` - triggered on a comment on a PR
+- `pull_request` - triggered on a pull request review
 - `pull_request_review` - triggered on a pull request review
 
 Using this action in a workflow that triggers on another event won't work.
-
-TODO: test also on `pull_request` events.
 
 ## Inputs
 

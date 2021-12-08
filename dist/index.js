@@ -8360,27 +8360,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.resolveRefs = void 0;
 const github = __importStar(__nccwpck_require__(3134));
-const ISSUE_TYPES = ['issue_comment'];
-const getPrUrl = (context) => {
-    if (ISSUE_TYPES.includes(context.eventName)) {
-        return context.payload.issue.pull_request.url;
+var SupportedEvents;
+(function (SupportedEvents) {
+    SupportedEvents["IssueComment"] = "issue_comment";
+    SupportedEvents["PullRequest"] = "pull_request";
+    SupportedEvents["PullRequestReview"] = "pull_request_review";
+})(SupportedEvents || (SupportedEvents = {}));
+const resolveRefs = (token) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b, _c;
+    const context = github.context;
+    switch (context.eventName) {
+        case SupportedEvents.IssueComment: {
+            const prUrl = (_a = context.payload.issue) === null || _a === void 0 ? void 0 : _a.pull_request.url;
+            const octokit = github.getOctokit(token);
+            const prDetails = yield octokit.request(`GET ${prUrl}`);
+            const status = prDetails.status;
+            const headRef = prDetails.data.head.ref;
+            const baseRef = prDetails.data.base.ref;
+            return { status, headRef, baseRef };
+        }
+        case SupportedEvents.PullRequest:
+        case SupportedEvents.PullRequestReview: {
+            const headRef = (_b = context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.head.ref;
+            const baseRef = (_c = context.payload.pull_request) === null || _c === void 0 ? void 0 : _c.base.ref;
+            return { headRef, baseRef };
+        }
     }
     throw new Error(`Unsupported event type: ${context.eventName}`);
-};
-const resolveRefs = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b;
-    if (github.context.eventName == 'pull_request_review') {
-        let headRef = (_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.head.ref;
-        let baseRef = (_b = github.context.payload.pull_request) === null || _b === void 0 ? void 0 : _b.base.ref;
-        return { headRef, baseRef };
-    }
-    const prUrl = getPrUrl(github.context);
-    const octokit = github.getOctokit(token);
-    const prDetails = yield octokit.request(`GET ${prUrl}`);
-    const status = prDetails.status;
-    const headRef = prDetails.data.head.ref;
-    const baseRef = prDetails.data.base.ref;
-    return { status, headRef, baseRef };
 });
 exports.resolveRefs = resolveRefs;
 
