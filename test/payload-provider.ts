@@ -12,8 +12,8 @@ class PayloadProvider {
     this.octokitPayload = {
       status: '200',
       data: {
-        head: { ref: 'refs/heads/pr', sha: '976fe30c8ebfbfbb174cbc34cb78a6ec3a6a6dde' },
-        base: { ref: 'refs/heads/main', sha: '976fe30c8ebfbfbb174cbc34cb78a6ec3a6a6dde' },
+        head: { ref: 'refs/heads/pr', sha: 'shaHead' },
+        base: { ref: 'refs/heads/main', sha: 'shaBase' },
       },
     };
   }
