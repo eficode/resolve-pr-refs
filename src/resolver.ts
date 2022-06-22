@@ -18,7 +18,9 @@ export const resolveRefs = async (token: string) => {
 
   const status = prDetails.status;
   const headRef = prDetails.data.head.ref;
-  const baseRef = prDetails.data.base.ref;
+  const headSha = prDetails.data.head.sha;
+  const baseRef = prDetails.data.base.sha;
+  const baseSha = prDetails.data.base.ref;
 
-  return { status, headRef, baseRef };
+  return { status, headRef, headSha, baseRef, baseSha };
 };

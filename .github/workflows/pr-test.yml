@@ -33,7 +33,11 @@ jobs:
           STATE=success
           if [[ "${{ steps.refs_in_test.outputs.base_ref }}" == "" ]]; then
             STATE=failure
+          elif [[ "${{ steps.refs_in_test.outputs.base_sha }}" == "" ]]; then
+            STATE=failure
           elif [[ "${{ steps.refs_in_test.outputs.head_ref }}" == "" ]]; then
+            STATE=failure
+          elif [[ "${{ steps.refs_in_test.outputs.head_sha }}" == "" ]]; then
             STATE=failure
           elif [[ "${{ steps.refs_in_test.outcome }}" != "success" ]]; then
             STATE=failure
