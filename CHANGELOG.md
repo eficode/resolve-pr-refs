@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/eficode/resolve-pr-refs/compare/v0.0.3...v0.0.4) (2022-06-23)
+
+
+### Features
+
+* Adds outputs for base_sha and head_sha ([#8](https://github.com/eficode/resolve-pr-refs/issues/8)) ([b4a471d](https://github.com/eficode/resolve-pr-refs/commit/b4a471d8f84ef11ade2e8ba598c8259d73a37587))
+
 ### [0.0.3](https://github.com/eficode/resolve-pr-refs/compare/v0.0.2...v0.0.3) (2021-11-24)
 
 
