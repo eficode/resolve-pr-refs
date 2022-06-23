@@ -5,18 +5,26 @@ TODO: test also on `pull_request` events.
 
 ## Inputs
 
-## `token`
+### `token`
 **Required:** Github API Token
 
 ## Outputs
 
-## `base_ref`
+### `base_ref`
 Pull request base ref.
 
-## `head_ref`
+### `base_sha`
+The SHA hash of the base ref.
+
+### `head_ref`
 Pull request head ref.
 
-## Example usage
+### `head_sha`
+The SHA hash of the head ref.
+
+## Usage
+
+### Example usage
 ```
 - name: resolve pr refs
   id: refs
@@ -25,7 +33,7 @@ Pull request head ref.
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-## Example usecase
+### Example usecase
 ```
 on:
   issue_comment:
