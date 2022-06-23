@@ -40,9 +40,11 @@ const resolver_1 = __nccwpck_require__(7409);
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const githubToken = core.getInput('token');
-        const { headRef, baseRef } = yield (0, resolver_1.resolveRefs)(githubToken);
+        const { headRef, headSha, baseRef, baseSha } = yield (0, resolver_1.resolveRefs)(githubToken);
         core.setOutput('base_ref', baseRef);
+        core.setOutput('base_sha', baseSha);
         core.setOutput('head_ref', headRef);
+        core.setOutput('head_sha', headSha);
     }
     catch (error) {
         core.setFailed(error.message);
@@ -101,8 +103,10 @@ const resolveRefs = (token) => __awaiter(void 0, void 0, void 0, function* () {
     const prDetails = yield octokit.request(`GET ${prUrl}`);
     const status = prDetails.status;
     const headRef = prDetails.data.head.ref;
+    const headSha = prDetails.data.head.sha;
     const baseRef = prDetails.data.base.ref;
-    return { status, headRef, baseRef };
+    const baseSha = prDetails.data.base.sha;
+    return { status, headRef, headSha, baseRef, baseSha };
 });
 exports.resolveRefs = resolveRefs;
 
