@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    labels:
+      - 'GitHub Actions'
+      - 'dependencies'
+
+  # Maintain dependencies for yarn
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    versioning-strategy: 'increase'
+    labels:
+      - 'npm'
+      - 'dependencies'
+    ignore:
+      # Prevent bumping our Node types to a version targetting something newer than
+      # the Node major version we're targetting.
+      - dependency-name: "@types/node"
+        versions: [">=17"]
