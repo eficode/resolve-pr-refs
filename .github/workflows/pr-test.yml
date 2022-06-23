@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: resolve pr refs with v0.0.1
         id: refs
-        uses: eficode/resolve-pr-refs@v0.0.1
+        uses: eficode/resolve-pr-refs@v0.0.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: checkout PR code
