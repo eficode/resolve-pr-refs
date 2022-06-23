@@ -3,11 +3,13 @@ name: pr-test
 on:
   issue_comment:
     types: [created]
+  
+  pull_request:
 
 jobs:
   print_refs:
     name: Test PR
-    if: ${{ github.event.comment.body == '/test' }}
+    # if: ${{ github.event.comment.body == '/test' }}
     runs-on: ubuntu-latest
     # Checkout PR and test that the action still works with it
     steps:
