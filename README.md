@@ -1,7 +1,6 @@
 # Github Action Resolve Pull Request Refs
-Tested only for `issue_comment` event. When your workflow triggers on a comment on PR, you can use this action.
 
-TODO: test also on `pull_request` events.
+Tested only for `issue_comment` event. When your workflow triggers on a comment on PR, you can use this action.
 
 ## Inputs
 
@@ -59,6 +58,10 @@ jobs:
           git merge --ff-only origin/${{ steps.refs.outputs.head_ref }}
           git push
 ```
+
+## Contributing
+
+Create a PR against this repository. To test your changes, comment `/test` on your PR.
 
 ## Building a new version
 
