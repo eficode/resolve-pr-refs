@@ -24,7 +24,8 @@ The SHA hash of the head ref.
 ## Usage
 
 ### Example usage
-```
+
+```yaml
 - name: resolve pr refs
   id: refs
   uses: eficode/resolve-pr-refs@main
@@ -33,7 +34,8 @@ The SHA hash of the head ref.
 ```
 
 ### Example usecase
-```
+
+```yaml
 on:
   issue_comment:
     types: [created]
