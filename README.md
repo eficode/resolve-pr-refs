@@ -1,6 +1,6 @@
 # Github Action Resolve Pull Request Refs
 
-Tested only for `issue_comment` event. When your workflow triggers on a comment on PR, you can use this action.
+When your workflow triggers on a comment on PR (the `issue_comment`-event), you can use this action to resolve the Git ref for that pull-request.
 
 ## Inputs
 
