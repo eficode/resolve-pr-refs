@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.18.3",
+    "@types/node": "^16.18.28",
     "@vercel/ncc": "^0.34.0",
     "jest": "^27.3.1",
     "standard-version": "^9.5.0",
