@@ -55,9 +55,11 @@ jobs:
         with:
           ref: ${{ steps.refs.outputs.base_ref }}
       - name: fast forward merge pr
+        env:
+          HEAD_REF: ${{ steps.refs.outputs.head_ref }}
         run: |
           git fetch
-          git merge --ff-only origin/${{ steps.refs.outputs.head_ref }}
+          git merge --ff-only origin/$HEAD_REF
           git push
 ```
 
